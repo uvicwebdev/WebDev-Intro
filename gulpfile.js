@@ -1,23 +1,23 @@
 'use strict';
 
-var pkg = require('./package.json'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  plumber = require('gulp-plumber'),
-  rename = require('gulp-rename'),
-  connect = require('gulp-connect'),
-  browserify = require('gulp-browserify'),
-  uglify = require('gulp-uglify'),
-  jade = require('gulp-jade'),
-  stylus = require('gulp-stylus'),
-  autoprefixer = require('gulp-autoprefixer'),
-  csso = require('gulp-csso'),
-  del = require('del'),
-  through = require('through'),
-  opn = require('opn'),
-  ghpages = require('gh-pages'),
-  path = require('path'),
-  isDist = process.argv.indexOf('serve') === -1;
+var pkg          = require('./package.json');
+var gulp         = require('gulp');
+var gutil        = require('gulp-util');
+var plumber      = require('gulp-plumber');
+var rename       = require('gulp-rename');
+var connect      = require('gulp-connect');
+var browserify   = require('gulp-browserify');
+var uglify       = require('gulp-uglify');
+var jade         = require('gulp-jade');
+var less         = require('gulp-less');
+var autoprefixer = require('gulp-autoprefixer');
+var csso         = require('gulp-csso');
+var del          = require('del');
+var through      = require('through');
+var opn          = require('opn');
+var ghpages      = require('gh-pages');
+var path         = require('path');
+var isDist       = process.argv.indexOf('serve') === -1;
 
 gulp.task('js', ['clean:js'], function() {
   return gulp.src('src/scripts/main.js')
@@ -39,11 +39,9 @@ gulp.task('html', ['clean:html'], function() {
 });
 
 gulp.task('css', ['clean:css'], function() {
-  return gulp.src('src/styles/main.styl')
+  return gulp.src('src/styles/main.less')
     .pipe(isDist ? through() : plumber())
-    .pipe(stylus({
-      // Allow CSS to be imported from node_modules and bower_components
-      'include css': true,
+    .pipe(less({
       'paths': ['./node_modules', './bower_components']
     }))
     .pipe(autoprefixer('last 2 versions', { map: false }))
