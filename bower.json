@@ -3,6 +3,6 @@
   "version": "0.0.0",
   "dependencies": {
     "prism": "gh-pages",
-    "normalize.less": "^1.0.0"
+    "spectre.css": "https://github.com/picturepan2/spectre.git#^0.1.31"
   }
 }

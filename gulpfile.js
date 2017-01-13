@@ -90,7 +90,7 @@ gulp.task('open', ['connect'], function (done) {
 
 gulp.task('watch', function() {
   gulp.watch('src/**/*.jade', ['html']);
-  gulp.watch('src/styles/**/*.styl', ['css']);
+  gulp.watch('src/styles/**/*.less', ['css']);
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch([
     'src/scripts/**/*.js',
